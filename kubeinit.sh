@@ -5,6 +5,7 @@ sudo apt-get upgrade
 sudo apt install vim -y
 sudo echo "set nu rnu" >> ~/.vimrc
 sudo echo "syntax on" >> ~/.vimrc
+sudo echo "set -o vi" >> ~/.bashrc
 
 sudo apt-get update
 sudo apt-get install ca-certificates curl -y
@@ -30,3 +31,6 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 sudo systemctl enable --now kubelet
+
+sudo rm /etc/containerd/config.toml
+sudo systemctl restart containerd
