@@ -14,6 +14,9 @@ sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
+sudo echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.d/k8s.conf
+sysctl net.ipv4.ip_forward
+
 # Add the repository to Apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
@@ -35,5 +38,7 @@ sudo systemctl enable --now kubelet
 
 sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
+
+sudo export KUBECONFIG=/etc/kubernetes/admin.conf
 
 #CONTROL PLANE: sudo kubeadm init         
