@@ -1,4 +1,4 @@
-#/usr/bin/sh
+#!/bin/sh
 
 if [ "$1" == "setup" ]; then
     echo "alias c=clear" >> ~/.bashrc
