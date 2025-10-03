@@ -1,6 +1,6 @@
 #/usr/bin/sh
 
-if ["$1" == "setup"]; then
+if [ "$1" == "setup" ]; then
     echo "alias c=clear" >> ~/.bashrc
     sudo apt-get upgrade
     sudo apt install vim -y
@@ -57,13 +57,13 @@ if ["$1" == "setup"]; then
     mkdir -p $HOME/.kube
 fi
 
-if ["$1" == "reset"]; then
+if [ "$1" == "reset" ]; then
     sudo rm -rf /etc/kubernetes/
     sudo rm -f $HOME/.kube/config
     sudo kubeadm reset
 fi
 
-if ["$1" == "init"]; then
+if [ "$1" == "init" ]; then
     sudo kubeadm init --config kubeadm-config.yaml
     sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
