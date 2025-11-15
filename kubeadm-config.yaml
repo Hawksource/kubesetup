@@ -1,0 +1,10 @@
+kind: ClusterConfiguration
+apiVersion: kubeadm.k8s.io/v1beta4
+kubernetesVersion: v1.34.1
+networking:
+  podSubnet: "10.244.0.0/16"
+controlPlaneEndpoint: "192.168.1.175:6443"
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
