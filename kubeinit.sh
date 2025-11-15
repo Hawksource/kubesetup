@@ -49,20 +49,6 @@ if [ "$1" = "setup" ]; then
     sudo apt-mark hold kubelet kubeadm kubectl
     sudo systemctl enable --now kubelet
 
-    # kubeadm config
-    cat <<EOF > kubeadm-config.yaml
-    kind: ClusterConfiguration
-    apiVersion: kubeadm.k8s.io/v1beta4
-    kubernetesVersion: v1.34.1
-    networking:
-      podSubnet: "10.244.0.0/16"
-    controlPlaneEndpoint: "192.168.1.175:6443"
-    ---
-    kind: KubeletConfiguration
-    apiVersion: kubelet.config.k8s.io/v1beta1
-    cgroupDriver: systemd
-    EOF
-
     mkdir -p $HOME/.kube
 fi
 
@@ -82,6 +68,6 @@ if [ "$1" = "init" ]; then
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
     echo ""
-    echo "👉 After init, apply a CNI (example: Flannel):"
+    echo " After init, apply a CNI (example: Flannel):"
     echo "kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml"
 fi
